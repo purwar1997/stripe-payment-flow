@@ -1,0 +1,21 @@
+{
+  "name": "stripe-payment-flow",
+  "version": "1.0.0",
+  "description": "Project to learn how payment flow works in stripe",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "stripe",
+    "payment"
+  ],
+  "author": "Shubham",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "stripe": "^11.16.0"
+  }
+}

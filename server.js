@@ -60,7 +60,6 @@ app.post('/api/checkout', async (req, res) => {
       clientSecret: paymentIntent.client_secret,
     });
   } catch (err) {
-    console.log(err);
     res.status(400).json({
       success: false,
       message: err.message,

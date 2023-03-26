@@ -7,7 +7,9 @@ const paymentForm = document.querySelector('#payment-form');
 
 paymentForm.style.display = 'none';
 
-inputForm.addEventListener('submit', async function (event) {
+let elements;
+
+inputForm.addEventListener('submit', async event => {
   event.preventDefault();
 
   const name = document.querySelector('#name').value;
@@ -30,21 +32,16 @@ inputForm.addEventListener('submit', async function (event) {
 
   const { clientSecret } = await response.json();
 
-  const options = {
-    clientSecret,
-    appearance: {},
-  };
-
-  const elements = stripe.elements(options);
+  elements = stripe.elements({ clientSecret });
 
   const paymentElement = elements.create('payment');
   paymentElement.mount('#payment-element');
 
-  this.style.display = 'none';
+  inputForm.style.display = 'none';
   paymentForm.style.display = 'block';
 });
 
-paymentForm.addEventListener('submit', async function (event) {
+paymentForm.addEventListener('submit', async event => {
   event.preventDefault();
 
   const { error } = await stripe.confirmPayment({
@@ -57,5 +54,9 @@ paymentForm.addEventListener('submit', async function (event) {
   if (error) {
     const message = document.querySelector('#error-message');
     message.innerText = error.message;
+  }
+
+  if (!error) {
+    paymentForm.style.display = 'none';
   }
 });
